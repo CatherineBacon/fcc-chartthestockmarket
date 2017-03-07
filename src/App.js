@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+var stockList = ['AAPL','TSLA','XOM'];
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      stocks: stockList
+    } 
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Catherine</h2>
+          <h2>Chart the Stock Market</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.state.stocks.map(function(stock) {
+            return <p>{stock}</p>;
+          })}
         </p>
       </div>
     );
