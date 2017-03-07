@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 // dummy list of stocks
-var stockList = ['AAPL','TSLA','XOM'];
+var stockList = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
 
 class App extends Component {
   constructor() {
@@ -25,9 +25,10 @@ class App extends Component {
     if (!stock) {
       return;
       //// also need to handle invlaid/nonexistant stock
+      //// and check if stock is already in list
     }
     this.setState({
-      stocks: this.state.stocks.concat([stock]),
+      stocks: this.state.stocks.concat([{name: stock}]),
       newStock: ''
     });
   }
@@ -38,11 +39,11 @@ class App extends Component {
         <div className="App-header">
           <h2>Chart the Stock Market</h2>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           {this.state.stocks.map(function(stock) {
-            return <p>{stock}</p>;
+            return <p>{stock.name}</p>;
           })}
-        </p>
+        </div>
         <form onSubmit={this.addStock.bind(this)}>
           <input 
             type='text'
