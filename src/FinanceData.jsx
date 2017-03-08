@@ -19,10 +19,24 @@ export default class FinanceData extends React.Component {
 			return stock.name;
 		});
 
+		var from = '2015-01-01';
+		var formatDate = function() {
+			var d = new Date(),
+				month = '' + (d.getMonth() + 1),
+				day = '' + d.getDate(),
+				year = d.getFullYear();
+
+			if (month.length < 2) month = '0' + month;
+			if (day.length < 2) day = '0' + day;
+
+			return [year, month, day].join('-');
+		}
+		var to = formatDate();
+
 		googleFinance.historical({
 		  	symbols: symbols,
-		  	from: '2015-01-01',
-		  	to: '2017-07-31'
+		  	from: from,
+		  	to: to
 		}, (err, results) => {
 		  	if (err) return console.log(err);
 		  	console.log(results)
