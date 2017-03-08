@@ -10,7 +10,8 @@ class App extends Component {
     super();
     this.state = {
       stocks: stockList,
-      newStock: ''
+      newStock: '',
+      showInvalid: false,
     } 
   }
 
@@ -36,14 +37,16 @@ class App extends Component {
     }
     this.setState({
       stocks: this.state.stocks.concat([{name: stock}]),
-      newStock: ''
+      newStock: '',
+      showInvalid: false,
     });
   }
 
-  removeStock(stock) {
+  removeInvalidStock(stock) {
     var stocks = this.state.stocks.filter(el => el.name!==stock);
     this.setState({
-      stocks: stocks
+      stocks: stocks,
+      showInvalid: true,
     })
   }
 
@@ -56,7 +59,7 @@ class App extends Component {
           <h2>Chart the Stock Market</h2>
         </div>
         <div className="App-intro">
-          <FinanceData stocks={ stocks } removeStock={ this.removeStock.bind(this) }/>
+          <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>
           {stocks.map( stock => <p key={stock.name}>{stock.name}</p> )}
         </div>
         <form onSubmit={this.addStock.bind(this)}>
@@ -68,6 +71,7 @@ class App extends Component {
           />
           <input type='submit'
             value='Add' />
+            {this.state.showInvalid ? <p className='invalidStock'>Incorrect or not existing stock code</p> : null}
         </form>
         <div className="App-footer">
           <footer>Written and coded by <span className='name'>Catherine Bacon</span></footer>

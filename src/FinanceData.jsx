@@ -36,7 +36,7 @@ export default class FinanceData extends React.Component {
 		  	const data = symbols.map(symbol => {
 		  		var name = symbol;
 		  		var nameData = results[name].map(result => [result.date.getTime(), result.close]);
-		  		if(nameData.length===0) this.props.removeStock(name); 
+		  		if(nameData.length===0) this.props.removeInvalidStock(name); 
 		  		return {name: name, data: nameData};
 		  	});
 			this.setState({ 
