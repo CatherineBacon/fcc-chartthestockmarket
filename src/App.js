@@ -22,10 +22,16 @@ class App extends Component {
   addStock(e) {
     e.preventDefault();
     var stock = this.state.newStock.trim();
+    var found = this.state.stocks.some(function(el) {
+      return el.name === stock;
+    });
+    if(found) {
+      this.setState({newStock: ''})
+      return;
+    }
     if (!stock) {
       return;
       //// also need to handle invlaid/nonexistant stock
-      //// and check if stock is already in list
     }
     this.setState({
       stocks: this.state.stocks.concat([{name: stock}]),
