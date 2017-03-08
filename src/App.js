@@ -42,6 +42,13 @@ class App extends Component {
     });
   }
 
+  deleteStock(stock) {
+    var stockList = this.state.stocks.filter(el => el.name!=stock);
+    this.setState({
+      stocks: stockList
+    })
+  }
+
   removeInvalidStock(stock) {
     var stocks = this.state.stocks.filter(el => el.name!==stock);
     this.setState({
@@ -60,7 +67,7 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>
-          {stocks.map( stock => <p key={stock.name}>{stock.name}</p> )}
+          {stocks.map( stock => <p key={stock.name}>{stock.name} <button className='btn' onClick={this.deleteStock.bind(this, stock.name)}>X</button></p> )}
         </div>
         <form onSubmit={this.addStock.bind(this)}>
           <input 
