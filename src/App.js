@@ -43,7 +43,7 @@ class App extends Component {
   }
 
   deleteStock(stock) {
-    var stockList = this.state.stocks.filter(el => el.name!=stock);
+    var stockList = this.state.stocks.filter(el => el.name!==stock);
     this.setState({
       stocks: stockList
     })
@@ -67,7 +67,7 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>
-          {stocks.map( stock => <p key={stock.name}>{stock.name} <button className='btn' onClick={this.deleteStock.bind(this, stock.name)}>X</button></p> )}
+          {stocks.map( stock => <p className='stockItem' key={stock.name}>{stock.name} <button className='btn-delete' onClick={this.deleteStock.bind(this, stock.name)}>X</button></p> )}
         </div>
         <form onSubmit={this.addStock.bind(this)}>
           <input 
@@ -81,7 +81,7 @@ class App extends Component {
             {this.state.showInvalid ? <p className='invalidStock'>Incorrect or not existing stock code</p> : null}
         </form>
         <div className="App-footer">
-          <footer>Written and coded by <span className='name'>Catherine Bacon</span></footer>
+          <footer>Written and coded by <a href='http://catherinecollinson.com' className='name'>Catherine Bacon</a></footer>
         </div>
       </div>
     )

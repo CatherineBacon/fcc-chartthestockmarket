@@ -18,6 +18,34 @@
   font-size: large;
 }
 
+.App-footer {
+  font-size: small;
+  padding-top: 2%;
+}
+
+.App-footer .name {
+  color: #575366;
+}
+
+.stockItem {
+  display: inline;
+  margin: 2%;
+}
+
+form {
+  margin: 2%;
+}
+
+.chart-block {
+  margin: 2%;
+}
+
+.btn-delete{
+  font-size: small;
+  border-radius: 40%;
+  color: red;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
