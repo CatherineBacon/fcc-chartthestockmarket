@@ -23,7 +23,7 @@ export default class FinanceData extends React.Component {
 			return stock.name;
 		});
 
-		var from = '2015-01-01';
+		var from = '2001-01-01';
 		var to = (new Date()).toISOString().split('T')[0];
 
 		googleFinance.historical({
@@ -32,7 +32,6 @@ export default class FinanceData extends React.Component {
 		  	to: to
 		}, (err, results) => {
 		  	if (err) return console.log(err);
-		  	console.log(results)
 		  	const data = symbols.map(symbol => {
 		  		var name = symbol;
 		  		var nameData = results[name].map(result => [result.date.getTime(), result.close]);
@@ -48,7 +47,6 @@ export default class FinanceData extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if(this.props.stocks!==nextProps.stocks) {
-			console.log(nextProps)
 			this.getFinanceData(nextProps);
 		}
 	}

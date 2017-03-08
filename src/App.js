@@ -33,7 +33,6 @@ class App extends Component {
     }
     if (!stock) {
       return;
-      //// also need to handle invlaid/nonexistant stock
     }
     this.setState({
       stocks: this.state.stocks.concat([{name: stock}]),
@@ -55,6 +54,8 @@ class App extends Component {
       stocks: stocks,
       showInvalid: true,
     })
+
+    setTimeout( () => this.setState({showInvalid: false}), 3000);
   }
 
   render() {
