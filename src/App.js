@@ -22,7 +22,7 @@ class App extends Component {
 
   addStock(e) {
     e.preventDefault();
-    var stock = this.state.newStock.trim();
+    var stock = this.state.newStock.trim().toUpperCase();
     var found = this.state.stocks.some(function(el) {
       return el.name === stock;
     });

@@ -15,7 +15,11 @@ export default class FinanceData extends React.Component {
 			],
 		}
 
-		var symbols = this.props.stocks.map(function(stock) {
+		this.getFinanceData(this.props);
+	}
+
+	getFinanceData(props) {
+		var symbols = props.stocks.map(function(stock) {
 			return stock.name;
 		});
 
@@ -42,8 +46,9 @@ export default class FinanceData extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props!=nextProps) {
-			
+		if(this.props.stocks!==nextProps.stocks) {
+			console.log(nextProps)
+			this.getFinanceData(nextProps);
 		}
 	}
 
