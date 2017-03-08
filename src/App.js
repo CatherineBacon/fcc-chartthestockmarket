@@ -40,6 +40,13 @@ class App extends Component {
     });
   }
 
+  removeStock(stock) {
+    var stocks = this.state.stocks.filter(el => el.name!==stock);
+    this.setState({
+      stocks: stocks
+    })
+  }
+
   render() {
     const { stocks, newStock } = this.state;
 
@@ -49,7 +56,7 @@ class App extends Component {
           <h2>Chart the Stock Market</h2>
         </div>
         <div className="App-intro">
-          <FinanceData stocks={ stocks }/>
+          <FinanceData stocks={ stocks } removeStock={ this.removeStock.bind(this) }/>
           {stocks.map( stock => <p key={stock.name}>{stock.name}</p> )}
         </div>
         <form onSubmit={this.addStock.bind(this)}>
