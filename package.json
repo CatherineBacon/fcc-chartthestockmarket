@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-finance": "^0.1.9",
+    "highcharts": "^5.0.7",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-highcharts": "^11.5.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.3"
