@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 import FinanceData from './FinanceData.jsx';
+import StockList from './StockList.jsx';
 
 // dummy list of stocks
-var stockList = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
+var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      stocks: stockList,
+      stocks: defaultStocks,
       newStock: '',
       showInvalid: false,
     } 
@@ -68,7 +69,7 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>
-          {stocks.map( stock => <p className='stockItem' key={stock.name}>{stock.name} <button className='btn-delete' onClick={this.deleteStock.bind(this, stock.name)}>X</button></p> )}
+          <StockList stocks={ stocks } deleteStock={this.deleteStock}/>
         </div>
         <form onSubmit={this.addStock.bind(this)}>
           <input 
