@@ -9,16 +9,29 @@ export default class FinanceData extends React.Component {
 
 		this.state = {
 			loading: true,
-			chartData: [[1,5],[2,4],[3,6]],
+			chartData: [
+				{ name: 'APPL', data: [[1,5],[2,4],[3,6]] }, 
+				{name:'XOM', data: [[1,4],[2,5],[3,8]] }
+			],
 		}
 
+		var symbols = this.props.stocks.map(function(stock) {
+			return stock.name;
+		});
+
 		googleFinance.historical({
-		  symbol: 'NASDAQ:AAPL',
-		  from: '2000-01-01',
-		  to: '2017-07-31'
-		}, (err, quotes) => {
-		  if (err) return console.log(err);
-		  const data = quotes.map(quote => [quote.date.getTime(), quote.close]);
+		  	symbols: symbols,
+		  	from: '2015-01-01',
+		  	to: '2017-07-31'
+		}, (err, results) => {
+		  	if (err) return console.log(err);
+		  	console.log(results)
+		  	const data = symbols.map(symbol => {
+		  		var name = symbol;
+		  		var nameData = results[name].map(result => [result.date.getTime(), result.close]); 
+		  		return {name: name, data: nameData};
+		  	});
+		  	//const data = quotes.map(quote => [quote.date.getTime(), quote.close]);
 			this.setState({ 
 				loading: false,
 				chartData: data,
@@ -30,10 +43,7 @@ export default class FinanceData extends React.Component {
 		if (this.state.loading) return <p>loading...</p>;
 
 		const config = {
-			series: [{
-				name: 'AAPL',
-				data: this.state.chartData,
-			}]
+			series: this.state.chartData,
 		}
 
 		return <Highstock config={config}/>
