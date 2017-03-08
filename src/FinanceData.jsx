@@ -11,7 +11,7 @@ export default class FinanceData extends React.Component {
 			loading: true,
 			chartData: [
 				{ name: 'APPL', data: [[1,5],[2,4],[3,6]] }, 
-				{name:'XOM', data: [[1,4],[2,5],[3,8]] }
+				{ name:'XOM', data: [[1,4],[2,5],[3,8]] }
 			],
 		}
 
@@ -20,18 +20,7 @@ export default class FinanceData extends React.Component {
 		});
 
 		var from = '2015-01-01';
-		var formatDate = function() {
-			var d = new Date(),
-				month = '' + (d.getMonth() + 1),
-				day = '' + d.getDate(),
-				year = d.getFullYear();
-
-			if (month.length < 2) month = '0' + month;
-			if (day.length < 2) day = '0' + day;
-
-			return [year, month, day].join('-');
-		}
-		var to = formatDate();
+		var to = (new Date()).toISOString().split('T')[0];
 
 		googleFinance.historical({
 		  	symbols: symbols,
@@ -45,7 +34,6 @@ export default class FinanceData extends React.Component {
 		  		var nameData = results[name].map(result => [result.date.getTime(), result.close]); 
 		  		return {name: name, data: nameData};
 		  	});
-		  	//const data = quotes.map(quote => [quote.date.getTime(), quote.close]);
 			this.setState({ 
 				loading: false,
 				chartData: data,
@@ -53,8 +41,14 @@ export default class FinanceData extends React.Component {
 		});
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if(this.props!=nextProps) {
+			
+		}
+	}
+
 	render() {
-		if (this.state.loading) return <p>loading...</p>;
+		if (this.state.loading) return <p className='chart-block'>loading...</p>;
 
 		const config = {
 			series: this.state.chartData,

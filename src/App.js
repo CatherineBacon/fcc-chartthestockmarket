@@ -62,6 +62,9 @@ class App extends Component {
           <input type='submit'
             value='Add' />
         </form>
+        <div className="App-footer">
+          <footer>Written and coded by <span className='name'>Catherine Bacon</span></footer>
+        </div>
       </div>
     )
   }
