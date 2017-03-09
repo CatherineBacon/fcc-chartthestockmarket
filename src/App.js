@@ -7,6 +7,12 @@ import FinanceData from './FinanceData.jsx';
 import StockList from './StockList.jsx';
 import AddStockForm from './AddStockForm.jsx';
 
+var config = {
+  apiKey: "AIzaSyBFiVa7Qt-IzLpFTFpWGLYfcFE0TbNQwgc",
+  databaseURL: "https://fcc-stockmarket-22a92.firebaseio.com"
+};
+
+firebase.initializeApp(config);
 
 var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
 
@@ -56,7 +62,7 @@ class App extends Component {
         <div className="App-intro">
           <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>  
         </div>
-        <StockList stocks={ stocks } deleteStock={this.deleteStock} className='stockChart' />
+        <StockList stocks={ stocks } deleteStock={this.deleteStock.bind(this)} className='stockChart' />
         <AddStockForm stocks={ stocks } addStock={ this.addStock.bind(this) } />
         <div className="App-footer">
           <footer>Written and coded by <a href='http://catherinecollinson.com' className='name'>Catherine Bacon</a></footer>
