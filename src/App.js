@@ -12,34 +12,14 @@ class App extends Component {
     super();
     this.state = {
       stocks: defaultStocks,
-      newStock: '',
       showInvalid: false,
     } 
   }
 
-  handleInputChange(e) {
+  addStock(stock) {
+    var stockList = this.state.stocks.concat([{name: stock}])
     this.setState({
-      newStock: e.target.value
-    });
-  }
-
-  addStock(e) {
-    e.preventDefault();
-    var stock = this.state.newStock.trim().toUpperCase();
-    var found = this.state.stocks.some(function(el) {
-      return el.name === stock;
-    });
-    if(found) {
-      this.setState({newStock: ''})
-      return;
-    }
-    if (!stock) {
-      return;
-    }
-    this.setState({
-      stocks: this.state.stocks.concat([{name: stock}]),
-      newStock: '',
-      showInvalid: false,
+      stocks: stockList,
     });
   }
 
@@ -61,7 +41,7 @@ class App extends Component {
   }
 
   render() {
-    const { stocks, newStock } = this.state;
+    const { stocks } = this.state;
 
     return (
       <div className="App">
@@ -72,18 +52,7 @@ class App extends Component {
           <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>  
         </div>
         <StockList stocks={ stocks } deleteStock={this.deleteStock} className='stockChart' />
-        <AddStockForm />
-        <form onSubmit={this.addStock.bind(this)}>
-          <input 
-            type='text'
-            placeholder='Stock Code'
-            value={newStock}
-            onChange={this.handleInputChange.bind(this)}
-          />
-          <input type='submit'
-            value='Add' />
-            {this.state.showInvalid ? <p className='invalidStock'>Incorrect or not existing stock code</p> : null}
-        </form>
+        <AddStockForm stocks={ stocks } addStock={ this.addStock.bind(this) } />
         <div className="App-footer">
           <footer>Written and coded by <a href='http://catherinecollinson.com' className='name'>Catherine Bacon</a></footer>
         </div>
