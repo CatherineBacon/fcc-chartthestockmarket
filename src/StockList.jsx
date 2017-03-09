@@ -9,6 +9,6 @@ export default class StockList extends React.Component{
 					<button className='btn-delete' onClick={deleteStock.bind(this, stock.name)}>X</button>
 				</p> )
 			});
-		return <div>{stockItems}</div>
+		return <div className='stockItems'>{stockItems}</div>
 	}
 }

@@ -36,7 +36,13 @@ export default class FinanceData extends React.Component {
 		  		var name = symbol;
 		  		var nameData = results[name].map(result => [result.date.getTime(), result.close]);
 		  		if(nameData.length===0) this.props.removeInvalidStock(name); 
-		  		return {name: name, data: nameData};
+		  		return {
+		  			name: name, 
+		  			data: nameData,
+		  			tooltip: {
+      					valueDecimals: 2
+    				}
+		  		};
 		  	});
 			this.setState({ 
 				loading: false,
@@ -58,7 +64,7 @@ export default class FinanceData extends React.Component {
 			series: this.state.chartData,
 		}
 
-		return <Highstock config={config}/>
+		return <Highstock config={config} className='chart-block'/>
 	}
 
 }

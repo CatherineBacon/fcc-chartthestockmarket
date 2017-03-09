@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import FinanceData from './FinanceData.jsx';
 import StockList from './StockList.jsx';
+import AddStockForm from './AddStockForm.jsx';
 
 // dummy list of stocks
 var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
@@ -68,9 +69,10 @@ class App extends Component {
           <h2>Chart the Stock Market</h2>
         </div>
         <div className="App-intro">
-          <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>
-          <StockList stocks={ stocks } deleteStock={this.deleteStock}/>
+          <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>  
         </div>
+        <StockList stocks={ stocks } deleteStock={this.deleteStock} className='stockChart' />
+        <AddStockForm />
         <form onSubmit={this.addStock.bind(this)}>
           <input 
             type='text'

@@ -38,6 +38,7 @@ form {
 
 .chart-block {
   margin: 2%;
+  width: 90%;
 }
 
 .btn-delete{
@@ -45,6 +46,7 @@ form {
   border-radius: 40%;
   color: red;
 }
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
