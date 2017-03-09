@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Firebase from 'firebase';
+import ReactFire from 'reactfire';
+import ReactMixin from 'react-mixin'
+
 import './App.css';
 import FinanceData from './FinanceData.jsx';
 import StockList from './StockList.jsx';
 import AddStockForm from './AddStockForm.jsx';
 
-// dummy list of stocks
+
 var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
 
 class App extends Component {
