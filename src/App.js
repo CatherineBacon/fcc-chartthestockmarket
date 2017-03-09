@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import reactFire from 'reactfire';
 
 import './App.css';
 import FinanceData from './FinanceData.jsx';
@@ -16,7 +15,7 @@ firebase.initializeApp(config);
 
 var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
 
-var database = firebase.database();
+var fb = firebase.database();
 
 class App extends Component {
   constructor() {
@@ -25,20 +24,20 @@ class App extends Component {
       stocks: defaultStocks,
       showInvalid: false,
     } 
+    fb.ref('stocks').on('value', snapshot => {
+      const stocks = snapshot.val();
+      this.setState({stocks: stocks})
+    })
   }
 
   addStock(stock) {
     var stockList = this.state.stocks.concat([{name: stock}])
-    this.setState({
-      stocks: stockList,
-    });
+    fb.ref('stocks').set(stockList);
   }
 
   deleteStock(stock) {
     var stockList = this.state.stocks.filter(el => el.name!==stock);
-    this.setState({
-      stocks: stockList
-    })
+    fb.ref('stocks').set(stockList);
   }
 
   removeInvalidStock(stock) {
@@ -49,6 +48,10 @@ class App extends Component {
     })
 
     setTimeout( () => this.setState({showInvalid: false}), 3000);
+  }
+
+  componentWillUnmount() {
+    fb.ref('stocks').off();
   }
 
   render() {
