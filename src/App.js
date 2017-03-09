@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Firebase from 'firebase';
-import ReactFire from 'reactfire';
-import ReactMixin from 'react-mixin'
+import firebase from 'firebase';
+import reactFire from 'reactfire';
 
 import './App.css';
 import FinanceData from './FinanceData.jsx';
@@ -10,6 +9,8 @@ import AddStockForm from './AddStockForm.jsx';
 
 
 var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
+
+var database = firebase.database();
 
 class App extends Component {
   constructor() {
