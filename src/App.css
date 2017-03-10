@@ -1,10 +1,6 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  background-color: #222;
 }
 
 .App-header {
@@ -16,35 +12,41 @@
 
 .App-intro {
   font-size: large;
+  background-color: #F0F2EF;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .App-footer {
   font-size: small;
   padding-top: 2%;
+  background-color: #222;
+  color: white;
 }
 
 .App-footer .name {
-  color: #575366;
+  color: #97ABB1;
 }
 
 .stockItem {
   display: inline;
   margin: 2%;
+  overflow: hidden;
 }
 
 form {
-  margin: 2%;
+  font-size: medium;
 }
 
-.chart-block {
-  margin: 2%;
-  width: 90%;
+.stockItems {
+  padding: 1%;
 }
 
-.btn-delete{
+.btn{
   font-size: small;
-  border-radius: 40%;
+  border-radius: 60%;
   color: red;
+  margin-left: 5px;
 }
 
 

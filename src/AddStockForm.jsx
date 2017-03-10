@@ -72,7 +72,9 @@ export default class AddStockForm extends React.Component{
             			onChange={this.handleInputChange.bind(this)}
           			/>
           			<input type='submit' value='Add' />
-            		{this.state.showInvalid ? <p className='invalidStock'>Incorrect or not existing stock code</p> : null}
+            		{this.state.showInvalid ? 
+                  <p className='invalidStock' style={{visibility: 'visible'}}>Incorrect or not existing stock code</p> 
+                  : <p className='invalidStock' style={{visibility: 'hidden'}}>Incorrect or not existing stock code</p>}
         		</form>
 			</div>
 		);

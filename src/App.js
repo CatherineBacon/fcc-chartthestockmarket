@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
 import FinanceData from './FinanceData.jsx';
 import StockList from './StockList.jsx';
 import AddStockForm from './AddStockForm.jsx';
@@ -62,11 +63,11 @@ class App extends Component {
         <div className="App-header">
           <h2>Chart the Stock Market</h2>
         </div>
-        <div className="App-intro">
-          <FinanceData stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>  
+        <div className="App-intro container-fluid">
+          <FinanceData className='black-center row' stocks={ stocks } removeInvalidStock={ this.removeInvalidStock.bind(this) }/>  
+          <StockList stocks={ stocks } deleteStock={this.deleteStock.bind(this)} className='stockChart row' />
+          <AddStockForm stocks={ stocks } addStock={ this.addStock.bind(this) } className='row'/>
         </div>
-        <StockList stocks={ stocks } deleteStock={this.deleteStock.bind(this)} className='stockChart' />
-        <AddStockForm stocks={ stocks } addStock={ this.addStock.bind(this) } />
         <div className="App-footer">
           <footer>Written and coded by <a href='http://catherinecollinson.com' className='name'>Catherine Bacon</a></footer>
         </div>

@@ -58,13 +58,13 @@ export default class FinanceData extends React.Component {
 	}
 
 	render() {
-		if (this.state.loading) return <p className='chart-block'>loading...</p>;
+		if (this.state.loading) return <p className='chart-block' style={{height: 400, backgroundColor: '#F8F8FF'}}>loading...</p>;
 
 		const config = {
 			series: this.state.chartData,
 		}
 
-		return <Highstock config={config} className='chart-block'/>
+		return <Highstock config={config} />
 	}
 
 }
