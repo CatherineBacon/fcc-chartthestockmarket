@@ -2,6 +2,8 @@
 
 This app was created as part of the following FreeCodeCamp challenge: https://www.freecodecamp.com/challenges/chart-the-stock-market
 
+**Final app: http://catherinecollinson.com/fcc-chartthestockmarket/**
+
 ## Objective
 
 Build a full stack JavaScript app that is functionally similar to [this](http://watchstocks.herokuapp.com/).
@@ -26,3 +28,5 @@ I used the [google finance](https://github.com/pilwon/node-google-finance) api t
 To sync the data between users in real-time I used [Firebase](https://firebase.google.com/).
 
 Styling was achieved using css built in to the Create React App along with [Bootstrap](http://getbootstrap.com/).
+
+Built [this](https://github.com/CatherineBacon/google-finance-proxy) microserver to proxy requests to google finance api (to avoid CORS issues) to enable this to be a signle page app without a server.
