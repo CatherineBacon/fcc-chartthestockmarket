@@ -1,6 +1,7 @@
 import React from 'react';
-import googleFinance from 'google-finance';
 import Highstock from 'react-highcharts/ReactHighstock'
+
+import getFinanceData from './getFinanceData';
 
 export default class FinanceData extends React.Component {
 	
@@ -15,10 +16,10 @@ export default class FinanceData extends React.Component {
 			],
 		}
 
-		this.getFinanceData(this.props);
+		this.getData(this.props);
 	}
 
-	getFinanceData(props) {
+	getData(props) {
 		var symbols = props.stocks.map(function(stock) {
 			return stock.name;
 		});
@@ -26,15 +27,18 @@ export default class FinanceData extends React.Component {
 		var from = '2001-01-01';
 		var to = (new Date()).toISOString().split('T')[0];
 
-		googleFinance.historical({
-		  	symbols: symbols,
+		getFinanceData({
+		  	symbols: symbols.join(','),
 		  	from: from,
 		  	to: to
 		}, (err, results) => {
 		  	if (err) return console.log(err);
 		  	const data = symbols.map(symbol => {
 		  		var name = symbol;
-		  		var nameData = results[name].map(result => [result.date.getTime(), result.close]);
+		  		var nameData = results[name].map(result => {
+		  			var date = new Date(result.date);
+		  			return [date.getTime(), result.close]
+		  		});
 		  		if(nameData.length===0) this.props.removeInvalidStock(name); 
 		  		return {
 		  			name: name, 
@@ -53,7 +57,7 @@ export default class FinanceData extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if(this.props.stocks!==nextProps.stocks) {
-			this.getFinanceData(nextProps);
+			this.getData(nextProps);
 		}
 	}
 

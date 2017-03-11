@@ -14,7 +14,7 @@ var config = {
 
 firebase.initializeApp(config);
 
-var defaultStocks = [{name:'AAPL'},{name:'TSLA'},{name:'XOM'}];
+var defaultStocks = [{name:'AAPL'},{name:'XOM'}];
 
 var fb = firebase.database();
 
