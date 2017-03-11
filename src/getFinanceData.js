@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const serverUrl = 'http://localhost:3001/historical';
+const serverUrl = 'https://google-finance-proxy.herokuapp.com/historical';
 
 export default function(options, cb) {
 	request

@@ -24,7 +24,7 @@ export default class FinanceData extends React.Component {
 			return stock.name;
 		});
 
-		var from = '2001-01-01';
+		var from = '2010-01-01';
 		var to = (new Date()).toISOString().split('T')[0];
 
 		getFinanceData({
